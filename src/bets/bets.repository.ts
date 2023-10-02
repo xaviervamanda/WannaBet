@@ -10,4 +10,13 @@ export class BetsRepository {
       data: createBetDto
     });
   }
+
+  async update(id: number, information: any) {
+    return await this.prismaService.bet.update({
+      where: {
+        id
+      },
+      data: information
+    });
+  }
 }

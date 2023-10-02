@@ -3,6 +3,8 @@ import { CreateBetDto } from './dto/create-bet.dto';
 import { BetsRepository } from './bets.repository';
 import { ParticipantsService } from 'src/participants/participants.service';
 import { GamesService } from 'src/games/games.service';
+import { UpdateBetDto } from './dto/update-bet.dto';
+import { BetStatus } from '@prisma/client';
 
 @Injectable()
 export class BetsService {
@@ -21,6 +23,10 @@ export class BetsService {
     if (game.isFinished) throw new BadRequestException("This game is already finished!");
     
     return await this.betsRepository.create(createBetDto);
+  }
+
+  async update(id: number, information: any) {
+    return await this.betsRepository.update(id, information);
   }
 
 }
