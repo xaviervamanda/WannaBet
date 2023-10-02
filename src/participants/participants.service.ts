@@ -6,22 +6,22 @@ import { UpdateParticipantDto } from './dto/update-participant.to';
 @Injectable()
 export class ParticipantsService {
   constructor(private readonly participantsRepository: ParticipantsRepository) {}
-  create(createParticipantDto: CreateParticipantDto) {
+  async create(createParticipantDto: CreateParticipantDto) {
     const { balance } = createParticipantDto;
     if (balance < 1000) throw new UnprocessableEntityException("Balance can't be less than R$10,00");
 
-    return this.participantsRepository.create(createParticipantDto);
+    return await this.participantsRepository.create(createParticipantDto);
   }
 
-  update(id: number, updateParticipantDto: UpdateParticipantDto) {
-    return this.participantsRepository.update(id, updateParticipantDto);
+  async update(id: number, updateParticipantDto: UpdateParticipantDto) {
+    return await this.participantsRepository.update(id, updateParticipantDto);
   }
 
-  findOne(id: number) {
-    return this.participantsRepository.findOne(id);
+  async findOne(id: number) {
+    return await this.participantsRepository.findOne(id);
   }
-  findAll() {
-    return this.participantsRepository.findAll();
+  async findAll() {
+    return await this.participantsRepository.findAll();
   }
 
 }

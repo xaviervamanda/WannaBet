@@ -6,25 +6,25 @@ import { UpdateParticipantDto } from './dto/update-participant.to';
 @Injectable()
 export class ParticipantsRepository {
   constructor(private readonly prismaService: PrismaService) {}
-  create(createParticipantDto: CreateParticipantDto) {
-    return this.prismaService.participant.create({
+  async create(createParticipantDto: CreateParticipantDto) {
+    return await this.prismaService.participant.create({
       data: createParticipantDto
     });
   }
 
-  findAll() {
-    return this.prismaService.participant.findMany();
+  async findAll() {
+    return await this.prismaService.participant.findMany();
   }
 
-  findOne(id: number) {
-    return this.prismaService.participant.findUnique({
+  async findOne(id: number) {
+    return await this.prismaService.participant.findUnique({
       where: {
         id
       }
     })
   }
-  update(id: number, updateParticipantDto: UpdateParticipantDto) {
-    return this.prismaService.participant.update({
+  async update(id: number, updateParticipantDto: UpdateParticipantDto) {
+    return await this.prismaService.participant.update({
       where: {
         id
       },
