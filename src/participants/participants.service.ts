@@ -1,6 +1,7 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { CreateParticipantDto } from './dto/create-participant.dto';
 import { ParticipantsRepository } from './participants.repository';
+import { UpdateParticipantDto } from './dto/update-participant.to';
 
 @Injectable()
 export class ParticipantsService {
@@ -12,6 +13,13 @@ export class ParticipantsService {
     return this.participantsRepository.create(createParticipantDto);
   }
 
+  update(id: number, updateParticipantDto: UpdateParticipantDto) {
+    return this.participantsRepository.update(id, updateParticipantDto);
+  }
+
+  findOne(id: number) {
+    return this.participantsRepository.findOne(id);
+  }
   findAll() {
     return this.participantsRepository.findAll();
   }
