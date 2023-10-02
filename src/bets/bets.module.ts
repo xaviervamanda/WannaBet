@@ -9,6 +9,6 @@ import { GamesModule } from '../games/games.module';
   controllers: [BetsController],
   providers: [BetsService, BetsRepository],
   exports: [BetsService],
-  imports: [ParticipantsModule, forwardRef(() => GamesModule)]
+  imports: [ParticipantsModule, GamesModule]
 })
 export class BetsModule {}
