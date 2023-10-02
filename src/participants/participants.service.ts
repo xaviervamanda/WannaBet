@@ -1,28 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { CreateParticipantDto } from './dto/create-participant.dto';
-import { UpdateParticipantDto } from './dto/update-participant.dto';
 import { ParticipantsRepository } from './participants.repository';
 
 @Injectable()
 export class ParticipantsService {
   constructor(private readonly participantsRepository: ParticipantsRepository) {}
   create(createParticipantDto: CreateParticipantDto) {
-    return 'This action adds a new participant';
+    const { balance } = createParticipantDto;
+    if (balance < 1000) throw new UnprocessableEntityException("Balance can't be less than R$10,00");
+
+    return this.participantsRepository.create(createParticipantDto);
   }
 
   findAll() {
-    return `This action returns all participants`;
+    return this.participantsRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} participant`;
-  }
-
-  update(id: number, updateParticipantDto: UpdateParticipantDto) {
-    return `This action updates a #${id} participant`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} participant`;
-  }
 }
