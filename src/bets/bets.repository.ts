@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBetDto } from './dto/create-bet.dto';
 import { UpdateBetDto } from './dto/update-bet.dto';
-import { BetsRepository } from './bets.repository';
 
 @Injectable()
-export class BetsService {
-  constructor(private readonly betsRepository: BetsRepository) {}
+export class BetsRepository {
   create(createBetDto: CreateBetDto) {
     return 'This action adds a new bet';
   }
