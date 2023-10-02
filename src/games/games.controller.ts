@@ -12,6 +12,11 @@ export class GamesController {
     return this.gamesService.create(createGameDto);
   }
 
+  @Post(':id/finish')
+  finishGame(@Body() updateGameDto: UpdateGameDto, @Param('id') id: string) {
+    return this.gamesService.finishGame(+id, updateGameDto);
+  }
+
   @Get()
   findAll() {
     return this.gamesService.findAll();
@@ -22,13 +27,4 @@ export class GamesController {
     return this.gamesService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
-    return this.gamesService.update(+id, updateGameDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.gamesService.remove(+id);
-  }
 }

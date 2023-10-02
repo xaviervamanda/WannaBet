@@ -1,28 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
 import { GamesRepository } from './games.repository';
+import { UpdateGameDto } from './dto/update-game.dto';
 
 @Injectable()
 export class GamesService {
   constructor(private readonly gamesRepository: GamesRepository) {}
-  create(createGameDto: CreateGameDto) {
-    return 'This action adds a new game';
+  async create(createGameDto: CreateGameDto) {
+    return await this.gamesRepository.create(createGameDto);
   }
 
-  findAll() {
-    return `This action returns all games`;
+  async finishGame(id: number, updateGameDto: UpdateGameDto) {
+    const game = await this.gamesRepository.findOne(id);
+    if (game.isFinished) throw new BadRequestException('Game is already finished');
+    // TODO:
+    // atualizar apostas desse jogo (as apostas estão dentro de game.Bet)
+    return await this.gamesRepository.finishGame(id, updateGameDto);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
+  async findAll() {
+    return await this.gamesRepository.findAll();
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
+  async findOne(id: number) {
+    return await this.gamesRepository.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} game`;
-  }
 }
