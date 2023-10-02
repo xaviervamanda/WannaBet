@@ -1,17 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, forwardRef } from '@nestjs/common';
 import { CreateBetDto } from './dto/create-bet.dto';
 import { BetsRepository } from './bets.repository';
-import { ParticipantsService } from 'src/participants/participants.service';
-import { GamesService } from 'src/games/games.service';
-import { UpdateBetDto } from './dto/update-bet.dto';
-import { BetStatus } from '@prisma/client';
+import { ParticipantsService } from '../participants/participants.service';
+import { GamesService } from '../games/games.service';
 
 @Injectable()
 export class BetsService {
   constructor(
-    private readonly betsRepository: BetsRepository,
     private readonly participantsService: ParticipantsService,
-    private readonly gamesService: GamesService
+    private readonly gamesService: GamesService,
+    private readonly betsRepository: BetsRepository,
     ) {}
   async create(createBetDto: CreateBetDto) {
     const { participantId, gameId } = createBetDto;

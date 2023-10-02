@@ -1,16 +1,16 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, forwardRef } from '@nestjs/common';
 import { CreateGameDto } from './dto/create-game.dto';
 import { GamesRepository } from './games.repository';
 import { UpdateGameDto } from './dto/update-game.dto';
-import { BetsService } from 'src/bets/bets.service';
-import { BetStatus } from 'src/bets/dto/update-bet.dto';
-import { ParticipantAmountWon } from 'src/utils/participantAmountWon';
+import { BetsService } from '../bets/bets.service';
+import { BetStatus } from '../bets/dto/update-bet.dto';
+import { ParticipantAmountWon } from '../utils/participantAmountWon';
 
 @Injectable()
 export class GamesService {
   constructor(
-    private readonly gamesRepository: GamesRepository,
     private readonly betsService: BetsService,
+    private readonly gamesRepository: GamesRepository,
     private readonly utils: ParticipantAmountWon
     ) {}
   async create(createGameDto: CreateGameDto) {
@@ -22,7 +22,10 @@ export class GamesService {
     if (game.isFinished) throw new BadRequestException('Game is already finished');
     
     game.Bet.forEach(async bet => {
-      await this.utils.wonOrLost(game, bet);
+      if (game.homeTeamScore === bet.homeTeamScore && game.awayTeamScore === bet.awayTeamScore) {
+            return await this.betsService.update(bet.id, { status: BetStatus.WON })
+        }
+        return await this.betsService.update(bet.id, { status: BetStatus.LOST })
     })
     const denominator = this.utils.amountWon(game.Bet);
     game.Bet.forEach(async bet => {
