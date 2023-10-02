@@ -13,6 +13,7 @@ This application is a betting system from a soccer betting house.
 ```bash
 $ npm install
 ```
+3. Configure the `.env` file using the `.env.example` file
 
 ### Running the app
 
