@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateParticipantDto } from './dto/create-participant.dto';
 import { UpdateParticipantDto } from './dto/update-participant.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ParticipantsRepository {
+  constructor(private readonly prismaService: PrismaService) {}
   create(createParticipantDto: CreateParticipantDto) {
     return 'This action adds a new participant';
   }

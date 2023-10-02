@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBetDto } from './dto/create-bet.dto';
 import { UpdateBetDto } from './dto/update-bet.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class BetsRepository {
+  constructor(private readonly prismaService: PrismaService) {}
   create(createBetDto: CreateBetDto) {
     return 'This action adds a new bet';
   }
