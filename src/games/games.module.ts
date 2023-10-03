@@ -2,7 +2,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { GamesService } from './games.service';
 import { GamesController } from './games.controller';
 import { GamesRepository } from './games.repository';
-import { ParticipantAmountWon } from 'src/utils/participantAmountWon';
+import { ParticipantAmountWon } from '../utils/participantAmountWon';
 
 @Module({
   controllers: [GamesController],

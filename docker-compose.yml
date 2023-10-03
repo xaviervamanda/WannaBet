@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    volumes:
+      - pg:/var/lib/postgresql/data
+  node_app:
+    container_name: wannabet
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+  pg_admin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=amandavxavier@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+
+volumes:
+  pg: # volume para os postgres

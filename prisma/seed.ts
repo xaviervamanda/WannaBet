@@ -10,7 +10,7 @@ async function main() {
     const participant = await prisma.participant.create({
         data: {
             name: "John Doe",
-            balance: 200,
+            balance: 2000,
         },
     });
 
