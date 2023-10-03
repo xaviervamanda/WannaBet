@@ -17,7 +17,7 @@ export class ParticipantsController {
   }
 
   @Get()
-  @ApiOperation({ summary: "Get all participants" })
+  @ApiOperation({ summary: "Gets all participants" })
   findAll() {
     return this.participantsService.findAll();
   }

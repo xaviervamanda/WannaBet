@@ -9,7 +9,7 @@ export class BetsController {
   constructor(private readonly betsService: BetsService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a bet' })
+  @ApiOperation({ summary: 'Creates a bet' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The record has been successfully created' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'User balance is not enough fot the bet amount' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Games user wants to bet is already finished' })

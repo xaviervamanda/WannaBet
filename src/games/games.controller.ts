@@ -10,7 +10,7 @@ export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new game' })
+  @ApiOperation({ summary: 'Creates a new game' })
   @ApiResponse({ status: HttpStatus.CREATED, description: 'The record has been successfully created' })
   create(@Body() createGameDto: CreateGameDto) {
     return this.gamesService.create(createGameDto);
@@ -26,14 +26,14 @@ export class GamesController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all games' })
+  @ApiOperation({ summary: 'Gets all games' })
   findAll() {
     return this.gamesService.findAll();
   }
 
   @Get(':id')
   @ApiParam({ name: 'id', description: 'game id', example: 1, type: 'number' })
-  @ApiOperation({ summary: 'Get a specific game' })
+  @ApiOperation({ summary: 'Gets a specific game' })
   findOne(@Param('id') id: string) {
     return this.gamesService.findOne(+id);
   }
