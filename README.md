@@ -13,7 +13,7 @@ This application is a betting system from a soccer betting house.
 ```bash
 $ npm install
 ```
-3. Configure the `.env` file using the `.env.example` file
+3. Configure the `.env` and the `.env.test` files using the `.env.example` file
 
 ### Running the app
 
@@ -38,7 +38,7 @@ $ npm run test
 $ npm run test:e2e
 
 # test coverage
-$ npm run test:cov
+$ npm run test:coverage
 ```
 
 ## Documentation
