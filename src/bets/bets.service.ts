@@ -19,7 +19,10 @@ export class BetsService {
 
     const game = await this.gamesService.findOne(gameId);
     if (game.isFinished) throw new BadRequestException("This game is already finished!");
-    
+
+    const newBalance = participant.balance - createBetDto.amountBet;
+    await this.participantsService.update(participantId, { balance: newBalance });
+
     return await this.betsRepository.create(createBetDto);
   }
 
