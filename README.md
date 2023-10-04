@@ -43,11 +43,11 @@ $ npm run test:coverage
 
 ## Documentation
 
-Check the documentation [here]().
+Check the documentation [here](https://wanna-bet.onrender.com/api).
 
 ## ⚡ Try it now!
 
-Click [here]().
+Click [here](https://wanna-bet.onrender.com).
 
 
 ### Main technologies
