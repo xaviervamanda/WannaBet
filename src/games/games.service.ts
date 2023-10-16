@@ -3,6 +3,8 @@ import { CreateGameDto } from './dto/create-game.dto';
 import { GamesRepository } from './games.repository';
 import { UpdateGameDto } from './dto/update-game.dto';
 import { ParticipantAmountWon } from '../utils/participantAmountWon';
+import { JSDOM } from 'jsdom';
+import * as DOMPurify from 'dompurify';
 
 @Injectable()
 export class GamesService {
