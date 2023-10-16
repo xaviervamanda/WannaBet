@@ -7,7 +7,8 @@ export class ParticipantAmountWon {
     ) {}
 
     wonOrLost (game: any) {
-        game.Bet.forEach(async bet => {
+        if (game.Bet.length === 0) return
+        game.Bet.forEach(async (bet: Bet) => {
             if (game.homeTeamScore === bet.homeTeamScore && game.awayTeamScore === bet.awayTeamScore) {
                   return await this.betsService.update(bet.id, { status: BetStatus.WON })
               }
@@ -28,6 +29,7 @@ export class ParticipantAmountWon {
     }
 
     updateAmount (bet: Bet[]) {
+        if (bet.length === 0) return
         const denominator = this.amountWon(bet);
         bet.forEach(async bet => {
             const amountWon = Math.floor(bet.amountBet/denominator);
