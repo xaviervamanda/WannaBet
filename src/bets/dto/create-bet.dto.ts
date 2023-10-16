@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreateBetDto {
     @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
         example: 1,
         description: 'Bet score for home team',
@@ -10,6 +11,7 @@ export class CreateBetDto {
     homeTeamScore: number;
 
     @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
         example: 1,
         description: 'Bet score for away team',
@@ -17,6 +19,7 @@ export class CreateBetDto {
 	awayTeamScore: number;
     
     @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
         example: 1000,
         description: 'Bet amount',
@@ -24,6 +27,7 @@ export class CreateBetDto {
 	amountBet: number;
     
     @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
         example: 1,
         description: 'Game id',
@@ -31,6 +35,7 @@ export class CreateBetDto {
 	gameId: number;
     
     @IsNumber()
+    @IsNotEmpty()
     @ApiProperty({
         example: 1,
         description: 'Participant id',
